@@ -28,6 +28,12 @@ namespace User.Services
                     return null;
                 }
 
+                if (string.IsNullOrWhiteSpace(user.PasswordHash))
+                {
+                    _logger.LogError("Stored password hash is missing for user: {Username}", username);
+                    return null;
+                }
+
                 // Verify password using BCrypt
                 var isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
 

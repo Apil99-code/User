@@ -1,4 +1,5 @@
 using Scalar.AspNetCore;
+using Dapper;
 using User.Modles;
 using User.Services;
 using User.Data;
@@ -8,6 +9,8 @@ using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+DefaultTypeMap.MatchNamesWithUnderscores = true;
 
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JwtSettings"));
 

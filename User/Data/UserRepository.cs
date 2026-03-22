@@ -20,6 +20,40 @@ namespace User.Data
     {
         private readonly string _connectionString;
 
+        private sealed class DbUser
+        {
+            public int Id { get; set; }
+            public string Username { get; set; } = string.Empty;
+            public string Email { get; set; } = string.Empty;
+            public string PasswordHash { get; set; } = string.Empty;
+            public string? Roles { get; set; }
+            public DateTime CreatedAt { get; set; }
+        }
+
+        private static string[] ParseRoles(string? roles)
+        {
+            if (string.IsNullOrWhiteSpace(roles))
+                return new[] { "User" };
+
+            return roles
+                .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Where(r => !string.IsNullOrWhiteSpace(r))
+                .ToArray();
+        }
+
+        private static AppUser MapToAppUser(DbUser dbUser)
+        {
+            return new AppUser
+            {
+                Id = dbUser.Id,
+                Username = dbUser.Username,
+                Email = dbUser.Email,
+                PasswordHash = dbUser.PasswordHash,
+                Roles = ParseRoles(dbUser.Roles),
+                CreatedAt = dbUser.CreatedAt
+            };
+        }
+
         public UserRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found.");
@@ -28,22 +62,52 @@ namespace User.Data
         public async Task<AppUser?> GetByIdAsync(int id)
         {
             using var connection = new NpgsqlConnection(_connectionString);
-            const string query = "SELECT id, username, email, password_hash, roles, created_at FROM users WHERE id = @Id";
-            return await connection.QueryFirstOrDefaultAsync<AppUser>(query, new { Id = id });
+            const string query = @"
+                SELECT 
+                    id,
+                    username,
+                    email,
+                    password_hash AS PasswordHash,
+                    roles,
+                    created_at AS CreatedAt
+                FROM users
+                WHERE id = @Id";
+            var dbUser = await connection.QueryFirstOrDefaultAsync<DbUser>(query, new { Id = id });
+            return dbUser == null ? null : MapToAppUser(dbUser);
         }
 
         public async Task<AppUser?> GetByUsernameAsync(string username)
         {
             using var connection = new NpgsqlConnection(_connectionString);
-            const string query = "SELECT id, username, email, password_hash, roles, created_at FROM users WHERE username = @Username";
-            return await connection.QueryFirstOrDefaultAsync<AppUser>(query, new { Username = username });
+            const string query = @"
+                SELECT 
+                    id,
+                    username,
+                    email,
+                    password_hash AS PasswordHash,
+                    roles,
+                    created_at AS CreatedAt
+                FROM users
+                WHERE username = @Username";
+            var dbUser = await connection.QueryFirstOrDefaultAsync<DbUser>(query, new { Username = username });
+            return dbUser == null ? null : MapToAppUser(dbUser);
         }
 
         public async Task<IEnumerable<AppUser>> GetAllAsync()
         {
             using var connection = new NpgsqlConnection(_connectionString);
-            const string query = "SELECT id, username, email, password_hash, roles, created_at FROM users ORDER BY created_at DESC";
-            return await connection.QueryAsync<AppUser>(query);
+            const string query = @"
+                SELECT 
+                    id,
+                    username,
+                    email,
+                    password_hash AS PasswordHash,
+                    roles,
+                    created_at AS CreatedAt
+                FROM users
+                ORDER BY created_at DESC";
+            var dbUsers = await connection.QueryAsync<DbUser>(query);
+            return dbUsers.Select(MapToAppUser);
         }
 
         public async Task<int> CreateAsync(AppUser user)
