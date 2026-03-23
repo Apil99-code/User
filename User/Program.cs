@@ -1,11 +1,12 @@
-using Scalar.AspNetCore;
 using Dapper;
-using User.Modles;
-using User.Services;
-using User.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Scalar.AspNetCore;
 using System.Text;
+using User.Data;
+using User.Hubs;
+using User.Modles;
+using User.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 DefaultTypeMap.MatchNamesWithUnderscores = true;
 
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JwtSettings"));
+
+
+//signalR
+builder.Services.AddSignalR();
 
 // Register Data Access Layer
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -86,6 +91,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.MapGet("/", () => Results.Redirect("/scalar/v1"));
+
+app.MapHub<ChatHub>("api/hubs/chat");
+app.MapHub<AuthHub>("/api/hubs/auth");
+app.MapHub<AdminHub>("/api/hubs/admin");
 
 app.UseAuthentication();
 app.UseAuthorization();

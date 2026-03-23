@@ -13,6 +13,7 @@
           "MediatR.Extensions.Microsoft.DependencyInjection": "11.1.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.5",
           "Microsoft.AspNetCore.OpenApi": "10.0.2",
+          "Microsoft.AspNetCore.SignalR.Client": "10.0.5",
           "Microsoft.Data.SqlClient": "6.0.2",
           "Npgsql": "8.0.3",
           "Scalar.AspNetCore": "2.13.6",
@@ -106,6 +107,14 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Http.Connections.Client/10.0.5": {
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.Http.Connections.Client.dll": {
+            "assemblyVersion": "10.0.5.0",
+            "fileVersion": "10.0.526.15411"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/10.0.2": {
         "dependencies": {
           "Microsoft.OpenApi": "2.0.0"
@@ -114,6 +123,26 @@
           "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll": {
             "assemblyVersion": "10.0.2.0",
             "fileVersion": "10.0.225.61305"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client/10.0.5": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Client": "10.0.5",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "10.0.5"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.SignalR.Client.dll": {
+            "assemblyVersion": "10.0.5.0",
+            "fileVersion": "10.0.526.15411"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client.Core/10.0.5": {
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.SignalR.Client.Core.dll": {
+            "assemblyVersion": "10.0.5.0",
+            "fileVersion": "10.0.526.15411"
           }
         }
       },
@@ -457,12 +486,33 @@
       "path": "microsoft.aspnetcore.authentication.jwtbearer/10.0.5",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.10.0.5.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Http.Connections.Client/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-z4Iny9wOi2D3h/YVPELyb2aMakFQIwiAeCHl1T8giCoUHgql+HtvKKldGxQC6/g4niuLBipi7O6zQT34O9/Rcw==",
+      "path": "microsoft.aspnetcore.http.connections.client/10.0.5",
+      "hashPath": "microsoft.aspnetcore.http.connections.client.10.0.5.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.OpenApi/10.0.2": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-YuEjUNpsoZLs0I5ONt013Z+Udsz3f9sPUh1Xm59LN7+/Z8oVG/swCUYLBbANtfreiunWnoT2uk+5kst4s2jr3Q==",
       "path": "microsoft.aspnetcore.openapi/10.0.2",
       "hashPath": "microsoft.aspnetcore.openapi.10.0.2.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SignalR.Client/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2v+Qi63UGm8hu9RAAfWeim3H9ovnxDiPx2MyLQI8nsWrgP+76Z7oiKj+kpVCR1N5QU9bF94RV0lZ/7OJH1LXUA==",
+      "path": "microsoft.aspnetcore.signalr.client/10.0.5",
+      "hashPath": "microsoft.aspnetcore.signalr.client.10.0.5.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SignalR.Client.Core/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A2+sApRgxWSxzD0Q5eRqElPPzqIqOljYCzt/mtC/KIjlTNLvVWoQn2amNnX3o7BrbaSdI1yeFcyKVal7zVgcSw==",
+      "path": "microsoft.aspnetcore.signalr.client.core/10.0.5",
+      "hashPath": "microsoft.aspnetcore.signalr.client.core.10.0.5.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
