@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UserAuth · Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- SignalR client -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0b0d11;
+        --surface: #13161d;
+        --border: #1f2430;
+        --accent: #00e5a0;
+        --accent2: #0099ff;
+        --danger: #ff4757;
+        --text: #e8eaf0;
+        --muted: #5a6278;
+        --msg-self: #0d2a1e;
+        --msg-other: #141828;
+        --radius: 12px;
+        --font-ui: "Syne", sans-serif;
+        --font-mono: "Space Mono", monospace;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-ui);
+      }
+
+      /* ─── NOISE TEXTURE ─────────────────────────── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        opacity: 0.5;
+      }
+
+      /* ─── PAGE ROUTER ───────────────────────────── */
+      .page {
+        display: none;
+        position: relative;
+        z-index: 1;
+      }
+      .page.active {
+        display: flex;
+      }
+
+      /* ══════════════════════════════════════════════
+       LOGIN PAGE
+    ══════════════════════════════════════════════ */
+      #loginPage {
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 420px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 44px 40px;
+        box-shadow:
+          0 0 80px rgba(0, 229, 160, 0.06),
+          0 32px 64px rgba(0, 0, 0, 0.5);
+        animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .logo {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .logo::before {
+        content: "";
+        display: block;
+        width: 28px;
+        height: 2px;
+        background: var(--accent);
+      }
+
+      .login-card h1 {
+        font-size: 28px;
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 8px;
+      }
+      .login-card h1 span {
+        color: var(--accent);
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 36px;
+        font-family: var(--font-mono);
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex;
+        gap: 0;
+        margin-bottom: 28px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .tab {
+        flex: 1;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        background: transparent;
+        border: none;
+        transition: all 0.2s;
+      }
+      .tab.active {
+        background: var(--accent);
+        color: #000;
+      }
+
+      /* Form */
+      .field {
+        margin-bottom: 18px;
+      }
+      .field label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 7px;
+        font-family: var(--font-mono);
+      }
+      .field input {
+        width: 100%;
+        padding: 13px 16px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text);
+        font-size: 15px;
+        font-family: var(--font-mono);
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .field input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 229, 160, 0.12);
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 14px;
+        background: var(--accent);
+        color: #000;
+        border: none;
+        border-radius: var(--radius);
+        font-size: 15px;
+        font-weight: 700;
+        font-family: var(--font-ui);
+        cursor: pointer;
+        margin-top: 8px;
+        transition:
+          opacity 0.2s,
+          transform 0.15s;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary:hover {
+        opacity: 0.88;
+      }
+      .btn-primary:active {
+        transform: scale(0.98);
+      }
+      .btn-primary:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .error-msg {
+        display: none;
+        color: var(--danger);
+        font-size: 13px;
+        font-family: var(--font-mono);
+        margin-top: 14px;
+        text-align: center;
+      }
+      .error-msg.show {
+        display: block;
+      }
+
+      /* ══════════════════════════════════════════════
+       CHAT PAGE
+    ══════════════════════════════════════════════ */
+      #chatPage {
+        height: 100vh;
+        flex-direction: row;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 260px;
+        min-width: 260px;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+      }
+      .sidebar-header {
+        padding: 22px 20px 18px;
+        border-bottom: 1px solid var(--border);
+      }
+      .sidebar-logo {
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        margin-bottom: 14px;
+      }
+      .user-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 800;
+        color: #000;
+        flex-shrink: 0;
+      }
+      .user-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .user-name {
+        font-size: 14px;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .user-status {
+        font-size: 11px;
+        color: var(--accent);
+        font-family: var(--font-mono);
+      }
+
+      .sidebar-section {
+        padding: 16px 20px 8px;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-family: var(--font-mono);
+      }
+      .room-list {
+        flex: 1;
+        overflow-y: auto;
+      }
+      .room-item {
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 14px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          background 0.15s,
+          color 0.15s;
+        border-left: 3px solid transparent;
+      }
+      .room-item:hover {
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+      }
+      .room-item.active {
+        background: rgba(0, 229, 160, 0.07);
+        color: var(--accent);
+        border-left-color: var(--accent);
+      }
+      .room-item .room-hash {
+        font-family: var(--font-mono);
+        font-size: 16px;
+      }
+
+      .sidebar-footer {
+        padding: 16px 20px;
+        border-top: 1px solid var(--border);
+      }
+      .btn-logout {
+        width: 100%;
+        padding: 10px;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        font-family: var(--font-ui);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .btn-logout:hover {
+        border-color: var(--danger);
+        color: var(--danger);
+      }
+
+      /* Chat area */
+      .chat-area {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      .chat-header {
+        padding: 18px 28px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--surface);
+      }
+      .chat-header-title {
+        font-size: 18px;
+        font-weight: 800;
+      }
+      .chat-header-sub {
+        font-size: 12px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        margin-left: auto;
+      }
+      .conn-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--muted);
+        flex-shrink: 0;
+        transition: background 0.3s;
+      }
+      .conn-dot.connected {
+        background: var(--accent);
+        box-shadow: 0 0 8px var(--accent);
+      }
+
+      /* Messages */
+      .messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        scroll-behavior: smooth;
+      }
+      .messages::-webkit-scrollbar {
+        width: 5px;
+      }
+      .messages::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .messages::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 4px;
+      }
+
+      .msg-group {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .msg-meta {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        padding: 0 14px;
+        margin-bottom: 2px;
+      }
+      .msg-bubble {
+        display: inline-block;
+        padding: 11px 16px;
+        border-radius: 14px;
+        font-size: 14.5px;
+        line-height: 1.55;
+        max-width: 68%;
+        word-break: break-word;
+      }
+      .msg-group.self {
+        align-items: flex-end;
+      }
+      .msg-group.self .msg-bubble {
+        background: var(--msg-self);
+        border: 1px solid rgba(0, 229, 160, 0.18);
+        border-bottom-right-radius: 4px;
+      }
+      .msg-group.other .msg-bubble {
+        background: var(--msg-other);
+        border: 1px solid var(--border);
+        border-bottom-left-radius: 4px;
+      }
+      .msg-group.system {
+        align-items: center;
+      }
+      .msg-group.system .msg-bubble {
+        background: transparent;
+        border: none;
+        color: var(--muted);
+        font-size: 12px;
+        font-family: var(--font-mono);
+        padding: 4px 0;
+      }
+
+      /* Input bar */
+      .input-bar {
+        padding: 18px 28px;
+        border-top: 1px solid var(--border);
+        background: var(--surface);
+        display: flex;
+        gap: 12px;
+        align-items: flex-end;
+      }
+      .msg-input {
+        flex: 1;
+        padding: 13px 18px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text);
+        font-size: 15px;
+        font-family: var(--font-ui);
+        resize: none;
+        min-height: 48px;
+        max-height: 140px;
+        outline: none;
+        line-height: 1.5;
+        transition: border-color 0.2s;
+      }
+      .msg-input:focus {
+        border-color: var(--accent);
+      }
+      .btn-send {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--accent);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          opacity 0.2s,
+          transform 0.15s;
+      }
+      .btn-send:hover {
+        opacity: 0.85;
+      }
+      .btn-send:active {
+        transform: scale(0.93);
+      }
+      .btn-send svg {
+        width: 20px;
+        height: 20px;
+        fill: #000;
+      }
+      .btn-send:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      /* Empty state */
+      .empty-state {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 13px;
+      }
+      .empty-state svg {
+        width: 40px;
+        height: 40px;
+        opacity: 0.3;
+      }
+
+      /* Loading spinner */
+      .spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        border-top-color: #000;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══════════ LOGIN PAGE ══════════ -->
+    <div class="page active" id="loginPage">
+      <div class="login-card">
+        <div class="logo">UserAuth</div>
+        <h1>Welcome<br /><span>back.</span></h1>
+        <p class="subtitle">// secure · real-time · encrypted</p>
+
+        <div class="tabs">
+          <button class="tab active" id="tabLogin" onclick="switchTab('login')">
+            Sign In
+          </button>
+          <button class="tab" id="tabRegister" onclick="switchTab('register')">
+            Register
+          </button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="formLogin">
+          <div class="field">
+            <label>Username</label>
+            <input
+              type="text"
+              id="loginUsername"
+              placeholder="your_handle"
+              autocomplete="username"
+            />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="••••••••"
+              autocomplete="current-password"
+            />
+          </div>
+          <button class="btn-primary" id="btnLogin" onclick="doLogin()">
+            Sign In
+          </button>
+        </div>
+
+        <!-- Register Form -->
+        <div id="formRegister" style="display: none">
+          <div class="field">
+            <label>Username</label>
+            <input
+              type="text"
+              id="regUsername"
+              placeholder="your_handle"
+              autocomplete="username"
+            />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input
+              type="email"
+              id="regEmail"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input
+              type="password"
+              id="regPassword"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+          </div>
+          <button class="btn-primary" id="btnRegister" onclick="doRegister()">
+            Create Account
+          </button>
+        </div>
+
+        <div class="error-msg" id="authError"></div>
+      </div>
+    </div>
+
+    <!-- ══════════ CHAT PAGE ══════════ -->
+    <div class="page" id="chatPage">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">// UserAuth Chat</div>
+          <div class="user-pill">
+            <div class="avatar" id="sidebarAvatar">?</div>
+            <div class="user-info">
+              <div class="user-name" id="sidebarName">—</div>
+              <div class="user-status">● online</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">Channels</div>
+        <div class="room-list">
+          <div class="room-item active" onclick="switchRoom('general')">
+            <span class="room-hash">#</span> general
+          </div>
+          <div class="room-item" onclick="switchRoom('random')">
+            <span class="room-hash">#</span> random
+          </div>
+          <div class="room-item" onclick="switchRoom('dev')">
+            <span class="room-hash">#</span> dev
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+        </div>
+      </aside>
+
+      <main class="chat-area">
+        <div class="chat-header">
+          <div class="conn-dot" id="connDot"></div>
+          <div class="chat-header-title" id="chatRoomTitle"># general</div>
+          <div class="chat-header-sub" id="connStatus">connecting…</div>
+        </div>
+
+        <div class="messages" id="messages">
+          <div class="empty-state" id="emptyState">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"
+              />
+            </svg>
+            <span>No messages yet. Say hello!</span>
+          </div>
+        </div>
+
+        <div class="input-bar">
+          <textarea
+            class="msg-input"
+            id="msgInput"
+            placeholder="Message # general…"
+            rows="1"
+            onkeydown="handleKey(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <button class="btn-send" id="btnSend" onclick="sendMessage()">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+            </svg>
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // ─── Config ────────────────────────────────────────────────────────────────
+      const API = ""; // same origin; set to 'http://localhost:5239' for cross-origin
+      const HUB = "/ChatHub";
+
+      // ─── State ────────────────────────────────────────────────────────────────
+      let token = localStorage.getItem("access_token") || "";
+      let username = localStorage.getItem("username") || "";
+      let currentRoom = "general";
+      let connection = null;
+      const roomMessages = {}; // { roomName: [{sender, text, time, self}] }
+
+      // ─── Boot ────────────────────────────────────────────────────────────────
+      window.addEventListener("DOMContentLoaded", () => {
+        if (token && username) enterChat();
+      });
+
+      // ─── Tab switch ──────────────────────────────────────────────────────────
+      function switchTab(tab) {
+        document.getElementById("formLogin").style.display =
+          tab === "login" ? "" : "none";
+        document.getElementById("formRegister").style.display =
+          tab === "register" ? "" : "none";
+        document
+          .getElementById("tabLogin")
+          .classList.toggle("active", tab === "login");
+        document
+          .getElementById("tabRegister")
+          .classList.toggle("active", tab === "register");
+        clearError();
+      }
+
+      function clearError() {
+        const el = document.getElementById("authError");
+        el.textContent = "";
+        el.classList.remove("show");
+      }
+      function showError(msg) {
+        const el = document.getElementById("authError");
+        el.textContent = msg;
+        el.classList.add("show");
+      }
+
+      function setBtnLoading(id, loading) {
+        const btn = document.getElementById(id);
+        btn.disabled = loading;
+        btn.innerHTML = loading
+          ? '<span class="spinner"></span>'
+          : btn.dataset.label;
+      }
+
+      // ─── Auth ────────────────────────────────────────────────────────────────
+      async function doLogin() {
+        clearError();
+        const user = document.getElementById("loginUsername").value.trim();
+        const pass = document.getElementById("loginPassword").value;
+        if (!user || !pass) return showError("Please fill in all fields.");
+
+        const btn = document.getElementById("btnLogin");
+        btn.dataset.label = btn.textContent;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>';
+
+        try {
+          const res = await fetch(`${API}/api/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: user, password: pass }),
+          });
+          const data = await res.json();
+          if (!res.ok)
+            throw new Error(data.message || data.title || "Login failed");
+
+          token = data.accessToken || data.access_token || data.token;
+          username = data.username || user;
+          localStorage.setItem("access_token", token);
+          localStorage.setItem("username", username);
+          enterChat();
+        } catch (e) {
+          showError(e.message);
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = btn.dataset.label;
+        }
+      }
+
+      async function doRegister() {
+        clearError();
+        const user = document.getElementById("regUsername").value.trim();
+        const email = document.getElementById("regEmail").value.trim();
+        const pass = document.getElementById("regPassword").value;
+        if (!user || !email || !pass)
+          return showError("Please fill in all fields.");
+
+        const btn = document.getElementById("btnRegister");
+        btn.dataset.label = btn.textContent;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>';
+
+        try {
+          const res = await fetch(`${API}/api/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: user, email, password: pass }),
+          });
+          const data = await res.json();
+          if (!res.ok)
+            throw new Error(
+              data.message || data.title || "Registration failed",
+            );
+
+          token = data.accessToken || data.access_token || data.token;
+          username = data.username || user;
+          localStorage.setItem("access_token", token);
+          localStorage.setItem("username", username);
+          enterChat();
+        } catch (e) {
+          showError(e.message);
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = btn.dataset.label;
+        }
+      }
+
+      // ─── Enter chat ──────────────────────────────────────────────────────────
+      function enterChat() {
+        document.getElementById("loginPage").classList.remove("active");
+        document.getElementById("chatPage").classList.add("active");
+
+        // Sidebar user info
+        document.getElementById("sidebarName").textContent = username;
+        document.getElementById("sidebarAvatar").textContent = username
+          .charAt(0)
+          .toUpperCase();
+
+        connectSignalR();
+      }
+
+      function doLogout() {
+        if (connection) connection.stop();
+        token = "";
+        username = "";
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("username");
+        document.getElementById("chatPage").classList.remove("active");
+        document.getElementById("loginPage").classList.add("active");
+        document.getElementById("messages").innerHTML =
+          '<div class="empty-state" id="emptyState"><svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg><span>No messages yet. Say hello!</span></div>';
+      }
+
+      // ─── SignalR ─────────────────────────────────────────────────────────────
+      function connectSignalR() {
+        connection = new signalR.HubConnectionBuilder()
+          .withUrl(`${HUB}?access_token=${token}`)
+          .withAutomaticReconnect([0, 2000, 5000, 10000])
+          .configureLogging(signalR.LogLevel.Warning)
+          .build();
+
+        connection.on("ReceiveMessage", (sender, message, room) => {
+          const r = room || "general";
+          addMessage(r, sender, message, sender === username);
+        });
+
+        connection.on("UserJoined", (user) => {
+          addSystemMessage(currentRoom, `${user} joined the room`);
+        });
+
+        connection.on("UserLeft", (user) => {
+          addSystemMessage(currentRoom, `${user} left the room`);
+        });
+
+        connection.onreconnecting(() => setConnStatus(false, "reconnecting…"));
+        connection.onreconnected(() => {
+          setConnStatus(true, "connected");
+          joinRoom(currentRoom);
+        });
+        connection.onclose(() => setConnStatus(false, "disconnected"));
+
+        connection
+          .start()
+          .then(() => {
+            setConnStatus(true, "connected");
+            joinRoom(currentRoom);
+          })
+          .catch(() => setConnStatus(false, "connection failed"));
+      }
+
+      function setConnStatus(ok, text) {
+        document.getElementById("connDot").classList.toggle("connected", ok);
+        document.getElementById("connStatus").textContent = text;
+        document.getElementById("btnSend").disabled = !ok;
+      }
+
+      function joinRoom(room) {
+        if (connection?.state === signalR.HubConnectionState.Connected) {
+          connection.invoke("JoinRoom", room).catch(console.error);
+        }
+      }
+
+      // ─── Rooms ───────────────────────────────────────────────────────────────
+      function switchRoom(room) {
+        if (currentRoom === room) return;
+
+        // Leave old room
+        if (connection?.state === signalR.HubConnectionState.Connected)
+          connection.invoke("LeaveRoom", currentRoom).catch(() => {});
+
+        currentRoom = room;
+
+        // UI update
+        document.querySelectorAll(".room-item").forEach((el) => {
+          el.classList.toggle("active", el.textContent.trim().includes(room));
+        });
+        document.getElementById("chatRoomTitle").textContent = `# ${room}`;
+        document.getElementById("msgInput").placeholder = `Message # ${room}…`;
+
+        renderMessages(room);
+        joinRoom(room);
+      }
+
+      // ─── Messages ────────────────────────────────────────────────────────────
+      function addMessage(room, sender, text, self = false) {
+        if (!roomMessages[room]) roomMessages[room] = [];
+        roomMessages[room].push({ sender, text, time: new Date(), self });
+        if (room === currentRoom) renderMessages(room);
+      }
+
+      function addSystemMessage(room, text) {
+        if (!roomMessages[room]) roomMessages[room] = [];
+        roomMessages[room].push({
+          sender: "system",
+          text,
+          time: new Date(),
+          self: false,
+          system: true,
+        });
+        if (room === currentRoom) renderMessages(room);
+      }
+
+      function renderMessages(room) {
+        const container = document.getElementById("messages");
+        const msgs = roomMessages[room] || [];
+
+        if (!msgs.length) {
+          container.innerHTML = `<div class="empty-state" id="emptyState">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg>
+        <span>No messages yet. Say hello!</span></div>`;
+          return;
+        }
+
+        container.innerHTML = msgs
+          .map((m) => {
+            if (m.system)
+              return `<div class="msg-group system"><div class="msg-bubble">${esc(m.text)}</div></div>`;
+            const cls = m.self ? "self" : "other";
+            const time = m.time.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+            return `<div class="msg-group ${cls}">
+        <div class="msg-meta">${m.self ? "You" : esc(m.sender)} · ${time}</div>
+        <div class="msg-bubble">${esc(m.text)}</div>
+      </div>`;
+          })
+          .join("");
+
+        container.scrollTop = container.scrollHeight;
+      }
+
+      async function sendMessage() {
+        const input = document.getElementById("msgInput");
+        const text = input.value.trim();
+        if (!text) return;
+        if (connection?.state !== signalR.HubConnectionState.Connected) return;
+
+        input.value = "";
+        autoResize(input);
+
+        try {
+          await connection.invoke("SendMessage", text, currentRoom);
+        } catch (e) {
+          addSystemMessage(currentRoom, `Failed to send: ${e.message}`);
+        }
+      }
+
+      // ─── Helpers ─────────────────────────────────────────────────────────────
+      function handleKey(e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      }
+      function autoResize(el) {
+        el.style.height = "auto";
+        el.style.height = Math.min(el.scrollHeight, 140) + "px";
+      }
+      function esc(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+    </script>
+  </body>
+</html>
