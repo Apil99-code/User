@@ -1,0 +1,160 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Dotnet\\User\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\controller\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\controller\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\hubs\\authhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\hubs\\authhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\hubs\\adminhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\hubs\\adminhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\data\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\data\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\data\\refreshtokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\data\\refreshtokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\controller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\controller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DatabaseConnection.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Data\\DatabaseConnection.cs",
+              "RelativeDocumentMoniker": "User\\Data\\DatabaseConnection.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Data\\DatabaseConnection.cs",
+              "RelativeToolTip": "User\\Data\\DatabaseConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:42:36.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RefreshTokenRepository.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Data\\RefreshTokenRepository.cs",
+              "RelativeDocumentMoniker": "User\\Data\\RefreshTokenRepository.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Data\\RefreshTokenRepository.cs",
+              "RelativeToolTip": "User\\Data\\RefreshTokenRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:42:35.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Data\\UserRepository.cs",
+              "RelativeDocumentMoniker": "User\\Data\\UserRepository.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Data\\UserRepository.cs",
+              "RelativeToolTip": "User\\Data\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:42:34.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdminHub.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Hubs\\AdminHub.cs",
+              "RelativeDocumentMoniker": "User\\Hubs\\AdminHub.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Hubs\\AdminHub.cs",
+              "RelativeToolTip": "User\\Hubs\\AdminHub.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAqwEQAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:31:05.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthHub.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Hubs\\AuthHub.cs",
+              "RelativeDocumentMoniker": "User\\Hubs\\AuthHub.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Hubs\\AuthHub.cs",
+              "RelativeToolTip": "User\\Hubs\\AuthHub.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAwEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:26:49.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MessagesController.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Controller\\MessagesController.cs",
+              "RelativeDocumentMoniker": "User\\Controller\\MessagesController.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Controller\\MessagesController.cs*",
+              "RelativeToolTip": "User\\Controller\\MessagesController.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:17:59.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Controller\\UsersController.cs",
+              "RelativeDocumentMoniker": "User\\Controller\\UsersController.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Controller\\UsersController.cs",
+              "RelativeToolTip": "User\\Controller\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:17:57.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Program.cs",
+              "RelativeDocumentMoniker": "User\\Program.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Program.cs",
+              "RelativeToolTip": "User\\Program.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:12:25.702Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

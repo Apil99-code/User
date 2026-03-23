@@ -30,6 +30,7 @@ dotnet add package Microsoft.AspNetCore.SignalR.Client
 Create file: `User/Hubs/AuthHub.cs`
 
 ```csharp
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;

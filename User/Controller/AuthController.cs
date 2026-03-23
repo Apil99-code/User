@@ -18,6 +18,7 @@ namespace User.Controller
             _logger = logger;
         }
 
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
