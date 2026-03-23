@@ -1,0 +1,32 @@
+# Build folders
+bin/
+obj/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# ASP.NET Core settings (optional ⚠️)
+appsettings.Development.json
+
+# Publish output
+publish/
+
+# Node (if you add frontend later)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
