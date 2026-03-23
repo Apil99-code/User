@@ -40,3 +40,30 @@ ON CONFLICT (username) DO NOTHING;
 INSERT INTO users (username, email, password_hash, roles, created_at)
 VALUES ('testuser', 'testuser@example.com', '$2a$11$q3ILxW7XdPlWR2pqaHJkVeMExIg6GKhxST6.FZ0KjJPg7Yn2VFKxK', 'User', CURRENT_TIMESTAMP)
 ON CONFLICT (username) DO NOTHING;
+
+
+
+order api 
+
+-- 1. Create Products Table
+CREATE TABLE IF NOT EXISTS Products (
+    Id UUID PRIMARY KEY,
+    ProductDescription TEXT NOT NULL,
+    Rate NUMERIC(18, 2) NOT NULL DEFAULT 0,
+    Stock INTEGER NOT NULL DEFAULT 0
+);
+
+-- 2. Create Orders Table
+CREATE TABLE IF NOT EXISTS Orders (
+    Id UUID PRIMARY KEY,
+    ProductId UUID NOT NULL,
+    Quantity INTEGER NOT NULL DEFAULT 0,
+    TotalPrice NUMERIC(18, 2) NOT NULL DEFAULT 0,
+    OrderDate TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Optional: Add a Foreign Key constraint to ensure data integrity
+    CONSTRAINT fk_product
+      FOREIGN KEY(ProductId) 
+      REFERENCES Products(Id)
+      ON DELETE CASCADE
+);

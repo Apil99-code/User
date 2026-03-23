@@ -85,4 +85,3 @@ namespace User.Hubs
     }
 }
 
-// 1. Include the SignalR library (if not already in your project)

@@ -346,7 +346,6 @@ D:\Dotnet\User\User\obj\Debug\net10.0\ref\User.dll
 D:\Dotnet\User\User\bin\Debug\net10.0\Microsoft.AspNetCore.Http.Connections.Client.dll
 D:\Dotnet\User\User\bin\Debug\net10.0\Microsoft.AspNetCore.SignalR.Client.dll
 D:\Dotnet\User\User\bin\Debug\net10.0\Microsoft.AspNetCore.SignalR.Client.Core.dll
-D:\Dotnet\User\User\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\Acer\OneDrive\Desktop\Ims\DotNet\User\User\bin\Debug\net10.0\Microsoft.AspNetCore.Http.Connections.Client.dll
 C:\Users\Acer\OneDrive\Desktop\Ims\DotNet\User\User\bin\Debug\net10.0\Microsoft.AspNetCore.SignalR.Client.dll
 C:\Users\Acer\OneDrive\Desktop\Ims\DotNet\User\User\bin\Debug\net10.0\Microsoft.AspNetCore.SignalR.Client.Core.dll
@@ -418,3 +417,5 @@ C:\Users\Acer\OneDrive\Desktop\Ims\DotNet\User\User\bin\validation-chat-fix\runt
 C:\Users\Acer\OneDrive\Desktop\Ims\DotNet\User\User\bin\validation-chat-fix\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Acer\OneDrive\Desktop\Ims\DotNet\User\User\bin\validation-chat-fix\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Acer\OneDrive\Desktop\Ims\DotNet\User\User\obj\Debug\net10.0\compressed\ap8cbb23f2-{0}-hfzx67vkry-hfzx67vkry.gz
+D:\Dotnet\User\User\bin\Debug\net10.0\User.staticwebassets.runtime.json
+D:\Dotnet\User\User\obj\Debug\net10.0\compressed\ap8cbb23f2-{0}-zvyq2wh5fi-zvyq2wh5fi.gz

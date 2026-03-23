@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\hubs\\authhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\hubs\\adminhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\hubs\\adminhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\controller\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\controller\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\modles\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\modles\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\data\\refreshtokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,12 +31,12 @@
       "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\data\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\controller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\controller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\controller\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\controller\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|d:\\dotnet\\user\\user\\controller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{645A2EB2-774C-3FB1-E638-6444A3939E2B}|User\\User.csproj|solutionrelative:user\\controller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,20 +46,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AdminHub.cs",
               "DocumentMoniker": "D:\\Dotnet\\User\\User\\Hubs\\AdminHub.cs",
               "RelativeDocumentMoniker": "User\\Hubs\\AdminHub.cs",
               "ToolTip": "D:\\Dotnet\\User\\User\\Hubs\\AdminHub.cs*",
               "RelativeToolTip": "User\\Hubs\\AdminHub.cs*",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwCMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-22T10:31:05.684Z",
-              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "JWTSettings.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Modles\\JWTSettings.cs",
+              "RelativeDocumentMoniker": "User\\Modles\\JWTSettings.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Modles\\JWTSettings.cs",
+              "RelativeToolTip": "User\\Modles\\JWTSettings.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T04:33:38.801Z",
               "EditorCaption": ""
             },
             {
@@ -64,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "DatabaseConnection.cs",
               "DocumentMoniker": "D:\\Dotnet\\User\\User\\Data\\DatabaseConnection.cs",
               "RelativeDocumentMoniker": "User\\Data\\DatabaseConnection.cs",
@@ -77,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "RefreshTokenRepository.cs",
               "DocumentMoniker": "D:\\Dotnet\\User\\User\\Data\\RefreshTokenRepository.cs",
               "RelativeDocumentMoniker": "User\\Data\\RefreshTokenRepository.cs",
@@ -90,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\Dotnet\\User\\User\\Data\\UserRepository.cs",
               "RelativeDocumentMoniker": "User\\Data\\UserRepository.cs",
@@ -107,9 +123,9 @@
               "Title": "AuthHub.cs",
               "DocumentMoniker": "D:\\Dotnet\\User\\User\\Hubs\\AuthHub.cs",
               "RelativeDocumentMoniker": "User\\Hubs\\AuthHub.cs",
-              "ToolTip": "D:\\Dotnet\\User\\User\\Hubs\\AuthHub.cs",
-              "RelativeToolTip": "User\\Hubs\\AuthHub.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAuwFgAAAAXAAAAAAAAAA==",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Hubs\\AuthHub.cs*",
+              "RelativeToolTip": "User\\Hubs\\AuthHub.cs*",
+              "ViewState": "AgIAAEwAAAAAAAAAAAA0wGgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-22T10:26:49.049Z",
               "EditorCaption": ""
@@ -117,19 +133,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Program.cs",
+              "RelativeDocumentMoniker": "User\\Program.cs",
+              "ToolTip": "D:\\Dotnet\\User\\User\\Program.cs*",
+              "RelativeToolTip": "User\\Program.cs*",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAE4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T10:12:25.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "MessagesController.cs",
               "DocumentMoniker": "D:\\Dotnet\\User\\User\\Controller\\MessagesController.cs",
               "RelativeDocumentMoniker": "User\\Controller\\MessagesController.cs",
               "ToolTip": "D:\\Dotnet\\User\\User\\Controller\\MessagesController.cs",
               "RelativeToolTip": "User\\Controller\\MessagesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-22T10:17:59.45Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "UsersController.cs",
               "DocumentMoniker": "D:\\Dotnet\\User\\User\\Controller\\UsersController.cs",
               "RelativeDocumentMoniker": "User\\Controller\\UsersController.cs",
@@ -138,19 +167,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-22T10:17:57.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Dotnet\\User\\User\\Program.cs",
-              "RelativeDocumentMoniker": "User\\Program.cs",
-              "ToolTip": "D:\\Dotnet\\User\\User\\Program.cs",
-              "RelativeToolTip": "User\\Program.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAUAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T10:12:25.702Z",
               "EditorCaption": ""
             }
           ]
